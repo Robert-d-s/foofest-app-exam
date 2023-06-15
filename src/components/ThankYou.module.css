@@ -1,0 +1,59 @@
+.nextButton {
+  background: none;
+  border: 2px solid white;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  width: 9rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.nextButton:hover {
+  background: white;
+  border: none;
+  border: 2px solid white;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  width: 9rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.ticket {
+  max-width: 50%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+
+  margin-top: 3rem;
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    margin-top: 1rem;
+    gap: 1.2rem;
+    font-size: 0.8rem;
+  }
+
+  .ticket {
+    max-width: 80%;
+  }
+  .nextButton {
+    border: 1px solid white;
+
+    width: 7rem;
+    padding: 0.7rem;
+    border-radius: 10px;
+  }
+  .nextButton:hover {
+    width: 7rem;
+    padding: 0.7rem;
+    border: 1px solid white;
+  }
+}

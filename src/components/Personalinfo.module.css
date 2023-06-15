@@ -1,0 +1,103 @@
+.nextButton {
+  background: none;
+  border: 2px solid white;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  width: 9rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.nextButton:hover {
+  background: white;
+  border: none;
+  border: 2px solid white;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  width: 9rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.wrapper {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.previousButton {
+  background: none;
+  border: 2px solid white;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  width: 9rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.previousButton:hover {
+  background: white;
+  border: none;
+  border: 2px solid white;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  width: 9rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.twoButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 20rem;
+}
+
+@media (max-width: 1100px) {
+  .wrapper {
+    margin: 2rem;
+  }
+  .twoButtons {
+    margin-right: 6rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .twoButtons {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    margin: 1rem;
+
+    font-size: 0.8rem;
+  }
+
+  .nextButton {
+    border: 1px solid white;
+
+    width: 7rem;
+    padding: 0.7rem;
+    border-radius: 10px;
+  }
+  .nextButton:hover {
+    width: 7rem;
+    padding: 0.7rem;
+    border: 1px solid white;
+  }
+
+  .previousButton {
+    border: 1px solid white;
+
+    width: 7rem;
+    padding: 0.7rem;
+    border-radius: 10px;
+  }
+  .previousButton:hover {
+    width: 7rem;
+    padding: 0.7rem;
+    border: 1px solid white;
+  }
+}
