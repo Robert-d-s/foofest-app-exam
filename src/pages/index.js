@@ -14,6 +14,8 @@ import FestMap from "@/components/FestMap";
 import Footer from "@/components/Footer";
 // import styles from "./Home.module.css";
 
+<script src="https://use.typekit.net/yourtypekitid.js" async></script>;
+
 const MainPage = ({ bandsData, scheduleData }) => {
   const [selectedDay, setSelectedDay] = useState();
   const [selectedBand, setSelectedBand] = useState(null);

@@ -9,10 +9,6 @@ export default function TicketSelection() {
 
   const [showModal, setShowModal] = useState(false);
 
-  // const handleNext = () => {
-  //   dispatch({ type: "NEXT_STEP" });
-  // };
-
   const handleNext = () => {
     if (formData.ticketData.ticketQuantity < 1) {
       setShowModal(true);
@@ -47,10 +43,8 @@ export default function TicketSelection() {
   }, [dispatch]);
 
   const handleTicketQuantityChange = (e) => {
-    // const ticketQuantity = Number(e.target.value);
     let ticketQuantity = e.target.value;
 
-    // Convert an empty string to 0
     if (ticketQuantity === "") {
       ticketQuantity = 0;
     } else {
@@ -81,7 +75,6 @@ export default function TicketSelection() {
         },
       });
     } else {
-      // If the input field is empty, don't update the ticketQuantity
       dispatch({
         type: "UPDATE_FIELD",
         payload: {
