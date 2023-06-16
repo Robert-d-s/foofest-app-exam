@@ -1,14 +1,28 @@
 /* eslint-disable react/no-unescaped-entities */
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FormContext, DispatchContext } from "../contexts/FormContext";
 import styles from "@/components/TicketSelection.module.css";
 export default function TicketSelection() {
   const { formData } = useContext(FormContext);
   const dispatch = useContext(DispatchContext);
 
+  const [showModal, setShowModal] = useState(false);
+
+  // const handleNext = () => {
+  //   dispatch({ type: "NEXT_STEP" });
+  // };
+
   const handleNext = () => {
-    dispatch({ type: "NEXT_STEP" });
+    if (formData.ticketData.ticketQuantity < 1) {
+      setShowModal(true);
+    } else {
+      dispatch({ type: "NEXT_STEP" });
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   const handleTicketTypeChange = (e) => {
@@ -26,8 +40,25 @@ export default function TicketSelection() {
     });
   };
 
+  useEffect(() => {
+    dispatch({
+      type: "CALCULATE_TICKET_PRICE",
+    });
+  }, [dispatch]);
+
   const handleTicketQuantityChange = (e) => {
-    const ticketQuantity = Number(e.target.value);
+    // const ticketQuantity = Number(e.target.value);
+    let ticketQuantity = e.target.value;
+
+    // Convert an empty string to 0
+    if (ticketQuantity === "") {
+      ticketQuantity = 0;
+    } else {
+      ticketQuantity = Number(ticketQuantity);
+    }
+
+    console.log("Ticket Quantity:", ticketQuantity);
+
     if (ticketQuantity >= 1) {
       dispatch({
         type: "UPDATE_FIELD",
@@ -49,11 +80,32 @@ export default function TicketSelection() {
           tentRemainder,
         },
       });
+    } else {
+      // If the input field is empty, don't update the ticketQuantity
+      dispatch({
+        type: "UPDATE_FIELD",
+        payload: {
+          section: "ticketData",
+          field: "ticketQuantity",
+          value: "",
+        },
+      });
     }
   };
 
   return (
     <div className={styles.wrapper}>
+      {showModal && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <p>Please select at least 1 ticket</p>
+          </div>
+          <button className={styles.closeButton} onClick={handleCloseModal}>
+            Close
+          </button>
+        </div>
+      )}
+
       <h2>Choose Your Ticket</h2>
       <div className={styles.ticketsTypes}>
         <label className={styles.radioButton}>
@@ -82,7 +134,7 @@ export default function TicketSelection() {
             className={styles.inputField}
             type="number"
             value={formData.ticketData.ticketQuantity}
-            min={1}
+            min={0}
             onChange={handleTicketQuantityChange}
           />
         </label>
