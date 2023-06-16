@@ -29,7 +29,6 @@ export default function PolyrhythmicSpiral() {
   const circleSliderValueRef = useRef(15);
   const [numArcs, setNumArcs] = useState(22);
   const arcsRef = useRef([]);
-  //   let frame = 0;
 
   const setGradientSliderValue = (value) => {
     gradientSliderValueRef.current = value;
@@ -93,12 +92,6 @@ export default function PolyrhythmicSpiral() {
     if (!paper) return;
 
     const pen = paper.getContext("2d");
-
-    const settings = {
-      startTime: new Date().getTime(),
-      duration: gradientSliderValueRef.current,
-      maxCycles: MAX_CYCLES,
-    };
 
     paper.width = paper.parentElement.clientWidth;
     paper.height = paper.parentElement.clientHeight;
@@ -202,10 +195,6 @@ export default function PolyrhythmicSpiral() {
 
     requestAnimationFrame(draw);
   }, [gradientSliderValueRef, circleSliderValueRef]);
-
-  //   useEffect(() => {
-  //     draw();
-  //   }, [draw]);
 
   useEffect(() => {
     let animationFrameId = requestAnimationFrame(draw);
