@@ -3,7 +3,7 @@ import Head from "next/head";
 import React, { useState } from "react";
 import Image from "next/image";
 // import PolyrhythmicSpiral from "../components/PolyrhythmicSpiral";
-import PolyrhythmicSpiral from "../components/Spiral";
+import PolyrhythmicSpiral from "../components/Spiral3";
 import DaySelector from "../components/DaySelector";
 import Band from "../components/Band2";
 import Modal from "../components/Modal";

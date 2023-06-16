@@ -1,30 +1,49 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import styles from "./PolyrhythmicSpiral.module.css";
 
 export default function PolyrhythmicSpiral() {
   const canvasRef = useRef(null);
-  const [gradientSliderValue, setGradientSliderValue] = useState(500);
-  const [circleSliderValue, setCircleSliderValue] = useState(500);
+  const gradientSliderValueRef = useRef(500);
+  const circleSliderValueRef = useRef(15);
+
+  const setGradientSliderValue = (value) => {
+    gradientSliderValueRef.current = value;
+  };
+
+  const setCircleSliderValue = (value) => {
+    circleSliderValueRef.current = value;
+  };
 
   useEffect(() => {
     const paper = canvasRef.current;
     if (paper) {
+      // ... rest of your code ...
       const pen = paper.getContext("2d");
 
       const colors = Array(22).fill("#A6C48A");
 
       const settings = {
         startTime: new Date().getTime(),
-        duration: gradientSliderValue,
+        duration: gradientSliderValueRef.current,
         maxCycles: Math.max(colors.length, 100),
       };
 
       let arcs = [];
 
+      const calculateInitialVelocity = (index) => {
+        const numberOfCycles = settings.maxCycles - index;
+        const distancePerCycle = 2 * Math.PI;
+        return (numberOfCycles * distancePerCycle) / 1000;
+      };
+
       const calculateVelocity = (index) => {
         const numberOfCycles = settings.maxCycles - index;
         const distancePerCycle = 2 * Math.PI;
-        return (numberOfCycles * distancePerCycle) / (1000 - circleSliderValue);
+        // return (
+        //   (numberOfCycles * distancePerCycle) /
+        //   (1000 - circleSliderValueRef.current)
+        // );
+        return (numberOfCycles * distancePerCycle) / 1000;
       };
 
       const calculateNextImpactTime = (currentImpactTime, velocity) => {
@@ -39,18 +58,22 @@ export default function PolyrhythmicSpiral() {
         pen.lineCap = "round";
 
         arcs = colors.map((color, index) => {
-          const velocity = calculateVelocity(index);
+          //   const velocity = calculateVelocity(index);
+          const initialVelocity = calculateInitialVelocity(index);
           const lastImpactTime = 0;
           const nextImpactTime = calculateNextImpactTime(
             settings.startTime,
-            velocity
+            // velocity
+            initialVelocity
           );
 
           return {
             color,
-            velocity,
+            // velocity,
+            initialVelocity,
             lastImpactTime,
             nextImpactTime,
+            totalDistance: 0,
           };
         });
       };
@@ -67,7 +90,9 @@ export default function PolyrhythmicSpiral() {
         drawArc(position.x, position.y, pointRadius, 0, 2 * Math.PI, "fill");
       };
       let frame = 0;
+
       const draw = () => {
+        // ... rest of your code ...
         paper.width = paper.parentElement.clientWidth;
         paper.height = paper.parentElement.clientHeight;
 
@@ -96,9 +121,16 @@ export default function PolyrhythmicSpiral() {
           colors.length;
 
         arcs.forEach((arc, index) => {
+          //   const velocity = arc.velocity * (circleSliderValueRef.current / 500);
+          const velocity =
+            arc.initialVelocity * (circleSliderValueRef.current / 500);
+
+          arc.totalDistance += velocity;
+
           const radius = base.initialRadius + base.spacing * index;
-          const distance = elapsedTime >= 0 ? elapsedTime * arc.velocity : 0;
-          const angle = (Math.PI + distance) % base.maxAngle;
+          //   const distance = elapsedTime >= 0 ? elapsedTime * velocity : 0;
+          //   const angle = (Math.PI + distance) % base.maxAngle;
+          const angle = (Math.PI + arc.totalDistance) % base.maxAngle;
           const colorPosition = ((frame - index * 10) % 360) / 360;
 
           let red, green, blue;
@@ -149,7 +181,7 @@ export default function PolyrhythmicSpiral() {
           drawPointOnArc(center, radius, base.circleRadius, angle);
         });
 
-        frame += gradientSliderValue / 500;
+        frame += gradientSliderValueRef.current / 500;
 
         requestAnimationFrame(draw);
       };
@@ -157,7 +189,7 @@ export default function PolyrhythmicSpiral() {
       init();
       draw();
     }
-  }, [gradientSliderValue, circleSliderValue]);
+  }, []); // Removed dependencies from the dependency array
 
   return (
     <div>
@@ -165,15 +197,15 @@ export default function PolyrhythmicSpiral() {
         type="range"
         min="1"
         max="4000"
-        value={gradientSliderValue}
+        defaultValue={gradientSliderValueRef.current}
         onChange={(e) => setGradientSliderValue(Number(e.target.value))}
       />
 
       <input
         type="range"
         min="1"
-        max="960"
-        value={circleSliderValue}
+        max="100"
+        defaultValue={circleSliderValueRef.current}
         onChange={(e) => setCircleSliderValue(Number(e.target.value))}
       />
       <canvas ref={canvasRef} className={styles.canvas} />
