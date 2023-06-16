@@ -89,6 +89,9 @@ export default function PolyrhythmicSpiral() {
 
   const draw = useCallback(() => {
     const paper = canvasRef.current;
+
+    if (!paper) return;
+
     const pen = paper.getContext("2d");
 
     const settings = {
@@ -200,8 +203,16 @@ export default function PolyrhythmicSpiral() {
     requestAnimationFrame(draw);
   }, [gradientSliderValueRef, circleSliderValueRef]);
 
+  //   useEffect(() => {
+  //     draw();
+  //   }, [draw]);
+
   useEffect(() => {
-    draw();
+    let animationFrameId = requestAnimationFrame(draw);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
   }, [draw]);
 
   return (
