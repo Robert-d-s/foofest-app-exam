@@ -29,11 +29,14 @@
   width: 40%; /* adjust as needed */
   padding: 20px;
   color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-:is(.textContainer, h2, p) {
+/* :is(.textContainer, h2, p) {
   padding-bottom: 1rem;
-}
+} */
 
 /*Responsive*/
 /* @media (max-width: 750px) {
