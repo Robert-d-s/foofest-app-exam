@@ -1,6 +1,13 @@
+import { useRouter } from "next/router";
 import styles from "./FestMap2.module.css";
 
 const FestMap = ({ src, alt, isExpanded, onMapClick }) => {
+  const router = useRouter(); // initialize the useRouter hook
+
+  const handleButtonClick = () => {
+    router.push("/booking"); // replace '/booking' with the path to your booking page
+  };
+
   return isExpanded ? (
     <div className={styles.expanded} onClick={onMapClick}>
       <img src={src} alt={alt} className={styles.expandedImage} />
@@ -27,6 +34,7 @@ const FestMap = ({ src, alt, isExpanded, onMapClick }) => {
           a dedicated area of 3x8 meters. The perfect option for those who want
           the best of both worlds.
         </p>
+        <button onClick={handleButtonClick}>But Tickets Now</button>
       </div>
     </div>
   );

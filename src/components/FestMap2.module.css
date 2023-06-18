@@ -63,3 +63,27 @@
   transition: all 0.3s ease-in-out;
   border-radius: 15px;
 }
+
+.textContainer button {
+  width: 50%;
+  align-self: center;
+  background: none;
+  border: 2px solid white;
+  outline: none;
+  cursor: pointer;
+  margin: 2rem 0 0 0;
+  color: white;
+  width: 9rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.textContainer button:hover {
+  background: rgb(36, 250, 125);
+  border: none;
+  border: 2px solid rgb(17, 166, 79);
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  width: 9rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
