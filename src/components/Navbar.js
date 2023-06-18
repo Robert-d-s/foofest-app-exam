@@ -7,8 +7,9 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo} onClick={() => router.push("/")}>
-        ColorFOO
+        ColorFOO ~ 1st - 7th July 2023
       </div>
+      {/* <p>1st - 7th July 2023</p> */}
       <div className={styles.navLinks}>
         <div onClick={() => router.push("/About")}>About</div>
         <div onClick={() => router.push("/Schedule")}>Schedule</div>
