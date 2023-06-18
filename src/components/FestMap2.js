@@ -34,7 +34,7 @@ const FestMap = ({ src, alt, isExpanded, onMapClick }) => {
           a dedicated area of 3x8 meters. The perfect option for those who want
           the best of both worlds.
         </p>
-        <button onClick={handleButtonClick}>But Tickets Now</button>
+        <button onClick={handleButtonClick}>Buy Tickets Now</button>
       </div>
     </div>
   );
