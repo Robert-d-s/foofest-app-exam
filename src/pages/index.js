@@ -2,7 +2,6 @@ import styles from "@/styles/Home.module.css";
 import Head from "next/head";
 import React, { useState } from "react";
 import Image from "next/image";
-// import PolyrhythmicSpiral from "../components/PolyrhythmicSpiral";
 import PolyrhythmicSpiral from "../components/Spiral3";
 import DaySelector from "../components/DaySelector";
 import Band from "../components/Band2";
@@ -10,7 +9,7 @@ import Modal from "../components/Modal";
 import Navbar from "../components/Navbar";
 import Sponsors from "../components/Sponsors";
 import Bubbles from "../components/Bubbles3";
-import FestMap from "@/components/FestMap";
+import FestMap from "@/components/FestMap2";
 import Footer from "@/components/Footer";
 // import styles from "./Home.module.css";
 
@@ -23,6 +22,12 @@ const MainPage = ({ bandsData, scheduleData }) => {
 
   const handleDayChange = (day) => {
     setSelectedDay(day);
+  };
+
+  const [isMapExpanded, setIsMapExpanded] = useState(false);
+
+  const handleMapClick = () => {
+    setIsMapExpanded(!isMapExpanded);
   };
 
   const handleBandClick = (band) => {
@@ -74,16 +79,12 @@ const MainPage = ({ bandsData, scheduleData }) => {
         </div>
       </div>
       <div className={styles.festmap}>
-        {/* <Image
+        <FestMap
           src="/images/festmap.png"
           alt="Festival Map"
-          // layout="responsive"
-          // width={500}
-          // height={300}
-          fill
-          style={{ objectFit: "scale-down" }}
-        /> */}
-        <FestMap src="/images/festmap.png" alt="Festival Map" />
+          isExpanded={isMapExpanded}
+          onMapClick={handleMapClick}
+        />
       </div>
       <Sponsors />
       <Footer />

@@ -225,7 +225,7 @@ export default function PolyrhythmicSpiral() {
       <input
         type="range"
         min="22"
-        max="150"
+        max="100"
         value={numArcs}
         onChange={(e) => setNumArcs(Number(e.target.value))}
       />
