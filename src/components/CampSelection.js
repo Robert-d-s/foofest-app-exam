@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { FormContext, DispatchContext } from "../contexts/FormContext";
 import CampCard from "./CampCard";
 import TentSelection from "./TentSelection";
@@ -9,8 +9,12 @@ const CampSelection = () => {
   const dispatch = useContext(DispatchContext);
   const [errors, setErrors] = useState([]);
 
+  // const [campSpot, setCampSpot] = useState(null);
+  const [campSpot, setCampSpot] = useState(null);
+
   const handleCampSpotChange = (e) => {
     const campSpot = e.target.value;
+    setCampSpot(campSpot);
     dispatch({
       type: "UPDATE_FIELD",
       payload: { section: "campData", field: "campSpot", value: campSpot },
@@ -62,7 +66,8 @@ const CampSelection = () => {
   const handleNext = () => {
     let errors = [];
 
-    if (!formData.campData.campSpot) {
+    if (!formData.campData.campSpot || !campSpot) {
+      // if (!formData.campData.campSpot) {
       errors.push("Please choose a camp spot.");
     }
 
