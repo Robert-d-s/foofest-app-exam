@@ -106,6 +106,14 @@
   padding: 0.2rem;
 }
 
+.noData {
+  color: var(--clr-white);
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 2rem;
+  font-family: var(--font-regular);
+}
+
 /*Responsive*/
 @media (max-width: 750px) {
   .programBox {

@@ -34,33 +34,22 @@ const CampSelection = () => {
   };
 
   function reserveSpot() {
-    fetch("https://hollow-glowing-gladiolus.glitch.me/reserve-spot", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        area: formData.campData.campSpot,
-        amount: formData.ticketData.ticketQuantity,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // console.log(data);
-        if (!formData.id) {
-          const fetchedId = data.id;
+    // Mock reservation since the original API is no longer available
+    setTimeout(() => {
+      const mockData = {
+        id: Math.random().toString(36).substr(2, 9), // Generate a random ID
+        message: "Spot reserved successfully",
+      };
 
-          dispatch({
-            type: "UPDATE_FIELD",
-            payload: { section: "id", value: fetchedId },
-          });
-        }
+      if (!formData.id) {
+        const fetchedId = mockData.id;
 
-        // console.log(formData.id);
-      })
-      .catch((error) => {
-        console.log("Error occurred while fetching or updating id:", error);
-      });
+        dispatch({
+          type: "UPDATE_FIELD",
+          payload: { section: "id", value: fetchedId },
+        });
+      }
+    }, 500); // Simulate network delay
   }
 
   const handleNext = () => {

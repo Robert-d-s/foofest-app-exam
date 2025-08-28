@@ -31,16 +31,10 @@ const PaymentForm = () => {
       totalPrice: formData.totalPrice,
     };
     await Promise.all([
-      fetch("https://hollow-glowing-gladiolus.glitch.me/fullfill-reservation", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
+      // Mock the fullfill-reservation call since the original API is no longer available
+      Promise.resolve()
+        .then(() => {
+          console.log("Mock reservation fulfilled successfully");
         })
         .catch((error) => {
           console.log("Error cought on first fetch:", error);

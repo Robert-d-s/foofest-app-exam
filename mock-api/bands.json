@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "name": "The Arctic Monkeys",
+    "slug": "arctic-monkeys",
+    "genre": "Alternative Rock",
+    "members": ["Alex Turner", "Matt Helders", "Nick O'Malley", "Jamie Cook"],
+    "logo": "https://example.com/arctic-monkeys-logo.jpg",
+    "logoCredits": "Arctic Monkeys Official"
+  },
+  {
+    "id": 2,
+    "name": "Billie Eilish",
+    "slug": "billie-eilish",
+    "genre": "Pop",
+    "members": ["Billie Eilish"],
+    "logo": "https://example.com/billie-eilish-logo.jpg",
+    "logoCredits": "Billie Eilish Official"
+  },
+  {
+    "id": 3,
+    "name": "Tame Impala",
+    "slug": "tame-impala",
+    "genre": "Psychedelic Rock",
+    "members": ["Kevin Parker"],
+    "logo": "https://example.com/tame-impala-logo.jpg",
+    "logoCredits": "Tame Impala Official"
+  },
+  {
+    "id": 4,
+    "name": "Dua Lipa",
+    "slug": "dua-lipa",
+    "genre": "Pop",
+    "members": ["Dua Lipa"],
+    "logo": "https://example.com/dua-lipa-logo.jpg",
+    "logoCredits": "Dua Lipa Official"
+  },
+  {
+    "id": 5,
+    "name": "Radiohead",
+    "slug": "radiohead",
+    "genre": "Alternative Rock",
+    "members": [
+      "Thom Yorke",
+      "Jonny Greenwood",
+      "Colin Greenwood",
+      "Ed O'Brien",
+      "Philip Selway"
+    ],
+    "logo": "https://example.com/radiohead-logo.jpg",
+    "logoCredits": "Radiohead Official"
+  }
+]

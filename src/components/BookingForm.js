@@ -11,21 +11,39 @@ import styles from "@/components/BookingForm.module.css";
 import ExpirationModal from "./ExpirationModal";
 
 export default function BookingForm() {
-  const { currentStep, formData, spots, expirationDate } = useContext(FormContext);
+  const { currentStep, formData, spots, expirationDate } =
+    useContext(FormContext);
   const dispatch = useContext(DispatchContext);
 
   useEffect(() => {
-    fetch("https://hollow-glowing-gladiolus.glitch.me/available-spots")
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch({
-          type: "SET_AREAS",
-          payload: data,
-        });
-      })
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-      });
+    // Mock available spots data since the original API is no longer available
+    const mockSpots = {
+      Svartheim: {
+        available: 100,
+        spots: 400,
+      },
+      Nilfheim: {
+        available: 50,
+        spots: 300,
+      },
+      Helheim: {
+        available: 25,
+        spots: 250,
+      },
+      Muspelheim: {
+        available: 0,
+        spots: 200,
+      },
+      Alfheim: {
+        available: 75,
+        spots: 350,
+      },
+    };
+
+    dispatch({
+      type: "SET_AREAS",
+      payload: mockSpots,
+    });
   }, [dispatch]);
 
   const renderFormStep = () => {
