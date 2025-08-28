@@ -17,28 +17,33 @@ export default function BookingForm() {
 
   useEffect(() => {
     // Mock available spots data since the original API is no longer available
-    const mockSpots = {
-      Svartheim: {
+    const mockSpots = [
+      {
+        area: "Svartheim",
         available: 100,
         spots: 400,
       },
-      Nilfheim: {
+      {
+        area: "Nilfheim",
         available: 50,
         spots: 300,
       },
-      Helheim: {
+      {
+        area: "Helheim",
         available: 25,
         spots: 250,
       },
-      Muspelheim: {
+      {
+        area: "Muspelheim",
         available: 0,
         spots: 200,
       },
-      Alfheim: {
+      {
+        area: "Alfheim",
         available: 75,
         spots: 350,
       },
-    };
+    ];
 
     dispatch({
       type: "SET_AREAS",
